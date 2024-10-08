@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchFeedbackData } from '../actions/feedbackactins'; // Ensure action name and path are correct
+import { fetchFeedbackData } from '../actions/feedbackactins'; 
 import './feedbacklist.css';
 
 const FeedbackList = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFeedback, setSelectedFeedback] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1); // For pagination (optional)
+  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
 
   const feedbackState = useSelector((state) => state.feedback);
   const { loading, feedbacks, error } = feedbackState;
 
   useEffect(() => {
-    dispatch(fetchFeedbackData(pageNumber)); // Fetch feedback for the current page
+    dispatch(fetchFeedbackData(pageNumber)); 
   }, [dispatch, pageNumber]);
 
   const openImageModal = (image) => {
@@ -96,7 +96,7 @@ const FeedbackList = () => {
             </tbody>
           </table>
 
-          {/* Pagination Controls */}
+
           <div className="pagination-controls">
             <button onClick={handlePreviousPage} disabled={pageNumber === 1}>
               Previous
@@ -109,12 +109,12 @@ const FeedbackList = () => {
         <p>No Feedback Available</p>
       )}
 
-      {/* Details Modal */}
+  
       {selectedFeedback && (
         <div className="modal" onClick={closeDetailsModal}>
           <div
             className="modal-content"
-            onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside content
+            onClick={(e) => e.stopPropagation()} 
           >
             <span className="close" onClick={closeDetailsModal}>
               &times;
